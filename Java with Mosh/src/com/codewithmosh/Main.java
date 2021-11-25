@@ -1,11 +1,14 @@
 package com.codewithmosh;
 
-import java.util.Locale;
+import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello Virak");
+        int[] numbers={2,3,5,1,4};
+        Arrays.sort(numbers);
+
+        System.out.println(Arrays.toString(numbers));
 
     }
 }
