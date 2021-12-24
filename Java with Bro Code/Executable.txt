@@ -1,0 +1,14 @@
+Create an executable jar with Eclipse IDE
+-----------------------------------------
+1. Right click on Java project (pick a project with a GUI)
+2. Export
+3. Java > Runnable Jar file
+4. At launch configuration select your project
+5. At Export destination, select where you want this jar file exported to
+6. Finish
+
+Create an executable jar with IntelliJ
+--------------------------------------
+1. File > Project Structure > Artifacts > (+) > JAR > jar from module with dependencies
+2. Main Class: select the class containing your main method
+3. OK
