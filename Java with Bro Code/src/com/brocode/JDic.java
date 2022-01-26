@@ -5,15 +5,31 @@ import javax.swing.event.*;
 import java.util.*;
 class JDic extends JFrame
 {
+	JMenu mFile=new JMenu("File");
+	JMenuItem mNew=new JMenuItem("New Word");
+	JMenuItem mPreview=new JMenuItem("Preview");
+	JMenuItem mExit=new JMenuItem("Exit");
+	
+	JPopupMenu mPop=new JPopupMenu("Edit");
+	JDesktopPane mdi=new JDesktopPane();
+	
 	JTextField txtFind=new JTextField(40);
 	JButton bGo=new JButton(" Go ");
 	JButton bClose=new JButton("Close");
-	JList lst;
+	JList lst=new JList();
 	JTextArea txtTranslate=new JTextArea();
 	Vector<Word> v=new Vector<Word>();
 	void doDesign()
 	{
-		JPanel p=new JPanel();
+	this.add(mdi);
+			mFile.add(mNew);
+			mFile.add(mPreview);
+			//mFile.addSeparator();
+			//mFile.add(mExit);
+			JMenuBar b=new JMenuBar();
+			b.add(mFile);
+			setJMenuBar(b);	
+/*		JPanel p=new JPanel();
 		p.add(new JLabel(" Word : "));
 		p.add(txtFind);
 		p.add(bGo);
@@ -23,6 +39,21 @@ class JDic extends JFrame
 		setData();
 		p.add(new JScrollPane(lst));p.add(txtTranslate);
 		this.add(p);
+*/
+		//Design Menu
+			
+			mExit.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){doClose();}});
+		//	mPop.add(mNew);
+		//	mPop.add(mPreview);
+			//this.add(mPop);
+		//	lst.addMouseListener(new MouseAdapter(){public void mouseClicked(MouseEvent ev){doPopup(ev);}});
+			
+			mNew.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){callNewWord();}});
+	}
+void doPopup(MouseEvent e)
+	{
+		if(e.getButton()==3)
+			mPop.show(e.getComponent(),e.getX(),e.getY());
 	}
 void setData()
 	{
@@ -33,7 +64,7 @@ void setData()
 		v.add(new Word("Super","(Adj) Very Very ..."));
 		v.add(new Word("Black","(Adj) A very dark color"));
 		v.add(new Word("Boom","(V) Say boom boom"));
-
+		
 		Collections.sort(v);
 		lst=new JList(v);	
 	}
@@ -46,6 +77,14 @@ JDic(){
 	setTitle("JDictionary");
 	setVisible(true);
 	}
+public void callNewWord()
+{
+	JOptionPane.showMessageDialog(this,"Just test");
+		NewWord f=new NewWord();
+		f.setSize(400,300);
+		mdi.add(f);
+		f.show();
+}
 void doSelect(){
 int i=lst.getSelectedIndex();
 txtTranslate.setText(v.get(i).translate);
